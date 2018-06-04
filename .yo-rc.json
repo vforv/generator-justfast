@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Vladimir Djukic",
+      "authorEmail": "vladimirdjukic90@gmail.com",
+      "authorUrl": "www.vladimirdjukic.com"
+    }
+  }
+}

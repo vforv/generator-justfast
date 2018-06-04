@@ -1,0 +1,76 @@
+{
+  "name": "<%= serviceName %>",
+  "version": "1.0.1",
+  "description": "<%= serviceDesc %>",
+  "main": "service.ts",
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "exclude": [
+      "**/*.d.ts",
+      "coverage",
+      "test",
+      "doc",
+      "src/doc.ts",
+      "src/service.ts",
+      "src/provider.ts"
+    ],
+    "reporter": [
+      "html",
+      "text"
+    ],
+    "all": true
+  },
+  "scripts": {
+    "test": "nyc --check-coverage --lines <%= coverage %> --functions <%= coverage %> --branches <%= coverage %> --statements <%= coverage %> mocha -r ts-node/register test/**/*.test.ts",
+    "dev": "nodemon",
+    "ts-node": "npm run lint && ts-node ./src/service.ts",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "doc": "ts-node ./src/doc.ts",
+    "predoc": "nyc mocha -r ts-node/register test/**/*.test.ts",
+    "postdoc": "concurrently 'http-server ./coverage -o' 'http-server ./doc -o -p 8081'",
+    "start": "node dist/service.js",
+    "build": "tsc --rootDir ./src",
+    "prestart": "tsc --rootDir ./src"
+  },
+  "author": "<%= serviceAuthor %>",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^1.0.0-rc.2",
+    "fastify-formbody": "^1.2.5",
+    "mongodb": "^3.0.4",
+    "http-errors": "^1.6.2",
+    "joi": "^13.1.2",
+    "joi-to-swagger": "^1.2.0",
+    "pino": "^4.13.0",
+    "reflect-metadata": "^0.1.12",
+    "replace-once": "^1.0.0",
+    "mongo-cursor-pagination": "^6.2.0",
+    "typedi": "^0.7.1"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^4.0.2",
+    "@types/http-errors": "^1.6.1",
+    "@types/joi": "^13.0.5",
+    "@types/mongodb": "^3.0.7",
+    "@types/node": "^9.4.6",
+    "@types/pino": "^4.7.1",
+    "@types/chai": "^4.1.2",
+    "@types/mocha": "^2.2.48",
+    "tslint": "^5.9.1",
+    "dotenv": "^5.0.1",
+    "nyc": "^11.4.1",
+    "mocha": "^5.0.4",
+    "chai": "^4.1.2",
+    "concurrently": "^3.5.1",
+    "http-server": "^0.11.1",
+    "bootprint": "^1.0.2",
+    "bootprint-openapi": "^1.1.0",
+    "fastify-swagger": "^0.5.0",
+    "nodemon": "^1.17.1",
+    "ts-node": "^5.0.1",
+    "typescript": "^2.7.2"
+  }
+}
