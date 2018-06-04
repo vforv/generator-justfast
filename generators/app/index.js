@@ -128,7 +128,7 @@ module.exports = class extends Generator {
     );
 
     this.fs.copyTpl(
-      this.templatePath('service/.gitignore'),
+      this.templatePath('service/.ignore'),
       this.destinationPath(`titan-${serviceName}/.gitignore`),
       pro
     );
