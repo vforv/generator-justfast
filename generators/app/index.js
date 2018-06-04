@@ -7,7 +7,7 @@ module.exports = class extends Generator {
   prompting() {
     // Have Yeoman greet the user.
     // this.log(
-    //   yosay(`Welcome to the rad ${chalk.red('generator-titan-ts')} generator!`)
+    //   yosay(`Welcome to the rad ${chalk.red('generator-ts')} generator!`)
     // );
 
     const prompts = [
@@ -15,7 +15,7 @@ module.exports = class extends Generator {
         type: 'input',
         name: 'serviceName',
         message: 'Enter service name(if multiple words separate with -)?',
-        default: 'ping'
+        default: 'justfast'
       },
       {
         type: 'input',
@@ -28,11 +28,6 @@ module.exports = class extends Generator {
         name: 'serviceAuthor',
         message: 'Full name of service main maintaine?',
         default: 'Vladimir Djukic'
-      },
-      {
-        type: 'confirm',
-        name: 'crud',
-        message: 'Is this CRUD service?'
       },
       {
         type: 'input',
@@ -111,125 +106,25 @@ module.exports = class extends Generator {
 
     this.fs.copyTpl(
       this.templatePath('service/.env'),
-      this.destinationPath(`titan-${serviceName}/.env`),
-      pro
-    );
-
-    this.fs.copyTpl(
-      this.templatePath('service/src/model/data/.model.ts'),
-      this.destinationPath(`titan-${serviceName}/src/model/data/${serviceName}-data.model.ts`),
-      pro
-    );
-
-    this.fs.copyTpl(
-      this.templatePath('service/src/validator/.index.ts'),
-      this.destinationPath(`titan-${serviceName}/src/validator/index.ts`),
+      this.destinationPath(`${serviceName}/.env`),
       pro
     );
 
     this.fs.copyTpl(
       this.templatePath('service/.ignore'),
-      this.destinationPath(`titan-${serviceName}/.gitignore`),
+      this.destinationPath(`${serviceName}/.gitignore`),
       pro
     );
 
     this.fs.copyTpl(
       this.templatePath('service/.dockerignore'),
-      this.destinationPath(`titan-${serviceName}/.dockerignore`),
+      this.destinationPath(`${serviceName}/.dockerignore`),
       pro
     );
 
-    // CRUD
-    if (this.props.crud) {
-      this.fs.copyTpl(
-        this.templatePath('service/test/.crud.ts'),
-        this.destinationPath(`titan-${serviceName}/test/crud.test.ts`),
-        pro
-      );
-
-      this.fs.copyTpl(
-        this.templatePath('service/test/.route-errors.ts'),
-        this.destinationPath(`titan-${serviceName}/test/route-errors.test.ts`),
-        pro
-      );
-
-      this.fs.copyTpl(
-        this.templatePath('service/src/logic/.index.ts'),
-        this.destinationPath(`titan-${serviceName}/src/logic/index.ts`),
-        pro
-      );
-
-      this.fs.copyTpl(
-        this.templatePath('service/src/logic/.create.logic.ts'),
-        this.destinationPath(`titan-${serviceName}/src/logic/create.logic.ts`),
-        pro
-      );
-
-      this.fs.copyTpl(
-        this.templatePath('service/src/logic/.delete.logic.ts'),
-        this.destinationPath(`titan-${serviceName}/src/logic/delete.logic.ts`),
-        pro
-      );
-
-      this.fs.copyTpl(
-        this.templatePath('service/src/logic/.update.logic.ts'),
-        this.destinationPath(`titan-${serviceName}/src/logic/update.logic.ts`),
-        pro
-      );
-
-      this.fs.copyTpl(
-        this.templatePath('service/src/logic/.read.logic.ts'),
-        this.destinationPath(`titan-${serviceName}/src/logic/read.logic.ts`),
-        pro
-      );
-
-      this.fs.copyTpl(
-        this.templatePath('service/src/logic/.read-one.logic.ts'),
-        this.destinationPath(`titan-${serviceName}/src/logic/read-one.logic.ts`),
-        pro
-      );
-
-      this.fs.copyTpl(
-        this.templatePath('service/src/route/.routes.ts'),
-        this.destinationPath(`titan-${serviceName}/src/route/routes.ts`),
-        pro
-      );
-
-
-    }
-    // CRUD
-    else
-    // WITHOUT CRUD
-    {
-      this.fs.copyTpl(
-        this.templatePath('service/src/logic/.index1.ts'),
-        this.destinationPath(`titan-${serviceName}/src/logic/index.ts`),
-        pro
-      );
-
-      this.fs.copyTpl(
-        this.templatePath('service/src/logic/.service.logic.ts'),
-        this.destinationPath(`titan-${serviceName}/src/logic/service.logic.ts`),
-        pro
-      );
-
-      this.fs.copyTpl(
-        this.templatePath('service/src/route/.routes1.ts'),
-        this.destinationPath(`titan-${serviceName}/src/route/routes.ts`),
-        pro
-      );
-
-      this.fs.copyTpl(
-        this.templatePath('service/test/.index.ts'),
-        this.destinationPath(`titan-${serviceName}/test/index.test.ts`),
-        pro
-      );
-    }
-    // WITHOUT CRUD
-
     this.fs.move(
       this.destinationPath('service/**'),
-      this.destinationPath(`titan-${serviceName}`)
+      this.destinationPath(`${serviceName}`)
     )
   }
 

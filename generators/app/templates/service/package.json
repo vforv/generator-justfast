@@ -1,8 +1,8 @@
 {
   "name": "<%= serviceName %>",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "<%= serviceDesc %>",
-  "main": "service.ts",
+  "main": "src/service.ts",
   "nyc": {
     "extension": [
       ".ts",

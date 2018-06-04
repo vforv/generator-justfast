@@ -1,12 +1,14 @@
 language: node_js
 node_js:
 - 6.11.4
-script: 'true'
+script:
+  - npm i
+  - npm test
 deploy:
   provider: npm
   email: vladimirdjukic90@gmail.com
   api_key: ${TOKEN}
-  skip_cleanup: true
+  skip_cleanup: false
   on:
     tags: false
     repo: vforv/generator-justfast

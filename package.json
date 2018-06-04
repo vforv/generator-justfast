@@ -1,12 +1,12 @@
 {
   "name": "generator-justfast",
-  "version": "0.0.0",
+  "version": "1.0.1",
   "description": "Light weight generator for node fw",
-  "homepage": "",
+  "homepage": "http://github.com/vforv/generator-justfast",
   "author": {
     "name": "Vladimir Djukic",
     "email": "vladimirdjukic90@gmail.com",
-    "url": "www.vladimirdjukic.com"
+    "url": "http://www.vladimirdjukic.com"
   },
   "files": [
     "generators"
@@ -39,7 +39,6 @@
   },
   "scripts": {
     "prepublish": "nsp check",
-    "pretest": "eslint .",
     "precommit": "lint-staged",
     "test": "jest"
   },
@@ -66,13 +65,6 @@
       "prettier"
     ],
     "rules": {
-      "prettier/prettier": [
-        {
-          "singleQuote": true,
-          "printWidth": 90
-        },
-        "error"
-      ]
     }
   },
   "repository": "vforv/generator-justfast",
